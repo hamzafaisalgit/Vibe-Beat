@@ -171,15 +171,11 @@ html, body {
     filter: invert(1);
     background: #e2d9d9;
     border-radius: 10px;
-    /* width: 80%; */
     padding: 12px;
     width: 66vw;
     min-height: 40px;
 }
 
-.songbuttons{
-    
-}
 
 .songList{
     height: 344px;
