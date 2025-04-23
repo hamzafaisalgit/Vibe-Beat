@@ -135,8 +135,7 @@ html, body {
     outline: none;
     font-size: 16px;
     cursor: pointer;
-    width: 79px;
-
+    width: 70px;
 }
 .signupbtn:hover{
     font-size: 17px;
