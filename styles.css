@@ -69,6 +69,10 @@ html, body {
 .header >*{
     padding: 20px;
 }
+
+.pre, .nex{
+    cursor: pointer;
+}
 .spotifyPlaylists{
     padding: 16px;
 }

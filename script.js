@@ -106,6 +106,20 @@ async function main() {
         }
     });
 
+    document.body.addEventListener("keydown",(e)=>{
+        if (e.code === 'Space'){
+            if(currentSong.paused){
+                currentSong.play();
+                playBtn.src = "img/pause.svg"
+            }
+            else{
+                currentSong.pause();
+                playBtn.src = "img/play.svg"
+            }
+        }
+        
+    });
+
     currentSong.addEventListener("timeupdate", () => {
         document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)}/
         ${secondsToMinutesSeconds(currentSong.duration)}`;
@@ -141,6 +155,26 @@ async function main() {
             playMusic(songs[index + 1].file);
         }
     });
+    
+    document.body.addEventListener("keydown",(e)=>{
+        if(e.code === 'ArrowLeft'){
+            let currentFile = currentSong.src.split("/").pop();
+            let index = songs.findIndex(song => song.file === currentFile);
+            if (index > 0) {
+                playMusic(songs[index - 1].file);
+            }
+        }
+    });
+
+    document.body.addEventListener("keydown",(e)=>{
+        if(e.code === 'ArrowRight'){
+            let currentFile = currentSong.src.split("/").pop();
+            let index = songs.findIndex(song => song.file === currentFile );
+            if(index < songs.length -1){
+                playMusic(songs[index+1].file)
+            }
+        }
+    })
 
     document.querySelector(".range input").addEventListener("change", (e) => {
         currentSong.volume = parseInt(e.target.value) / 100;
@@ -155,6 +189,7 @@ async function main() {
             await getSongs(`songs/${folder}`);
         });
     });
+
     
     document.querySelector(".volume>img").addEventListener("click", e=>{ 
         if(e.target.src.includes("volume.svg")){
@@ -167,9 +202,7 @@ async function main() {
             currentSong.volume = .10;
             document.querySelector(".range").getElementsByTagName("input")[0].value = 10;
         }
-
     })
-    
 }
 
 main();
